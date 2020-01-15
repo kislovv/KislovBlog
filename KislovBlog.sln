@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KislovBlog", "KislovBlog\KislovBlog.csproj", "{02986928-78AA-405D-9FB7-F041DBC8AFF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KislovBlog", "KislovBlog\KislovBlog.csproj", "{02986928-78AA-405D-9FB7-F041DBC8AFF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KislovBlog.Contracts", "KislovBlog.Contracts\KislovBlog.Contracts.csproj", "{A3ABCE4A-7903-4118-9AE0-BBB63EB68632}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KislovBlog.Contracts", "KislovBlog.Contracts\KislovBlog.Contracts.csproj", "{A3ABCE4A-7903-4118-9AE0-BBB63EB68632}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KislovBlog.Controllers", "KislovBlog.Controllers\KislovBlog.Controllers.csproj", "{602818FC-88BD-4D27-BDFF-EA96C360EF83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KislovBlog.Controllers", "KislovBlog.Controllers\KislovBlog.Controllers.csproj", "{602818FC-88BD-4D27-BDFF-EA96C360EF83}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{2F84C684-E435-45B2-BE23-65CE810A7167}"
 EndProject
@@ -15,7 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host", "Host", "{D80E8D45-9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{29CCDD7F-48C9-41BE-8F03-3A7D868B5A3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KislovBlog.Domain", "KislovBlog.Domain\KislovBlog.Domain.csproj", "{BBBF2D31-1DD1-4676-95A5-73EFA15F7EB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KislovBlog.Domain", "KislovBlog.Domain\KislovBlog.Domain.csproj", "{BBBF2D31-1DD1-4676-95A5-73EFA15F7EB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KislovBlog.Utilities", "Utilits\KislovBlog.Utilities.csproj", "{F61627CF-19B2-4E35-9786-028B43DE37CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{BBBF2D31-1DD1-4676-95A5-73EFA15F7EB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBBF2D31-1DD1-4676-95A5-73EFA15F7EB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBBF2D31-1DD1-4676-95A5-73EFA15F7EB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F61627CF-19B2-4E35-9786-028B43DE37CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F61627CF-19B2-4E35-9786-028B43DE37CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F61627CF-19B2-4E35-9786-028B43DE37CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F61627CF-19B2-4E35-9786-028B43DE37CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{A3ABCE4A-7903-4118-9AE0-BBB63EB68632} = {2F84C684-E435-45B2-BE23-65CE810A7167}
 		{602818FC-88BD-4D27-BDFF-EA96C360EF83} = {2F84C684-E435-45B2-BE23-65CE810A7167}
 		{BBBF2D31-1DD1-4676-95A5-73EFA15F7EB9} = {29CCDD7F-48C9-41BE-8F03-3A7D868B5A3F}
+		{F61627CF-19B2-4E35-9786-028B43DE37CC} = {29CCDD7F-48C9-41BE-8F03-3A7D868B5A3F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4224164-1620-4366-AA41-47900ACAB216}
