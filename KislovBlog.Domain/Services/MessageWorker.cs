@@ -6,7 +6,7 @@ using KislovBlog.Domain.Models;
 
 namespace KislovBlog.Domain.Services
 {
-    class MessageWorker : IMessageWorker
+    public class MessageWorker : IMessageWorker
     {
         private readonly ICensureChecker _censureChecker;
 

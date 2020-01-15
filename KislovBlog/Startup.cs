@@ -1,3 +1,5 @@
+using KislovBlog.Domain.Abstraction;
+using KislovBlog.Domain.Services;
 using KislovBlog.Middlewares;
 using KislovBlog.Utilities.Helpers;
 using Microsoft.AspNetCore.Builder;
@@ -20,9 +22,12 @@ namespace KislovBlog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<AuthOption>(Configuration.GetSection("Auth"));
-            services.AddSingleton<CensureChecker>();
+            services.AddSingleton<ICensureChecker,CensureChecker>();
+            services.AddScoped<IMessageWorker, MessageWorker>();
+
             services.AddControllers();
+
+            services.Configure<AuthOption>(Configuration.GetSection("Auth"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
