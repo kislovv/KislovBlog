@@ -5,6 +5,6 @@ namespace KislovBlog.Domain.Abstraction
 {
     public interface IMessageWorker
     {
-        Task<MessageDataDtoRs> AnalysMessage(MessageDataDto message);
+        Task<MessageDataDtoRs> AnalysMessage(string message);
     }
 }

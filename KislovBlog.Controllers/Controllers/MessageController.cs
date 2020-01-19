@@ -1,14 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using KislovBlog.Domain.Abstraction;
+using Microsoft.AspNetCore.Mvc;
 
 namespace KislovBlog.Controllers.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
+    [Controller]
+    [Route("Articles")]
     public class MessageController : ControllerBase
     {
-        public MessageController()
+        private readonly IMessageWorker _messageWorker;
+        public MessageController(IMessageWorker messageWorker)
         {
+            _messageWorker = messageWorker;
         }
+
+
 
     }
 }

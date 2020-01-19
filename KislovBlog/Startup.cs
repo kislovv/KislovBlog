@@ -1,3 +1,5 @@
+using AutoMapper;
+using KislovBlog.Controllers.ModelConfig;
 using KislovBlog.Domain.Abstraction;
 using KislovBlog.Domain.Services;
 using KislovBlog.Middlewares;
@@ -22,6 +24,11 @@ namespace KislovBlog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton(new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new ApiProfile());
+            }).CreateMapper());
+
             services.AddSingleton<ICensureChecker,CensureChecker>();
             services.AddScoped<IMessageWorker, MessageWorker>();
 

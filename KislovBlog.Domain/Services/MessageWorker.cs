@@ -15,14 +15,14 @@ namespace KislovBlog.Domain.Services
             _censureChecker = censureChecker;
         }
 
-        public Task<MessageDataDtoRs> AnalysMessage(MessageDataDto message)
+        public Task<MessageDataDtoRs> AnalysMessage(string message)
         {
-            if (!_censureChecker.CheckMessage(message.Message.Split(' ')))
+            if (!_censureChecker.CheckMessage(message.Split(' ')))
             {
-                return Task.FromResult(new MessageDataDtoRs{CurrectMessage = message.Message});
+                return Task.FromResult(new MessageDataDtoRs{CurrectMessage = message});
             }
 
-            var words = message.Message.Split(' ');
+            var words = message.Split(' ');
             for (var index = 0; index < words.Length; index++)
             {
                 var word = words[index];
