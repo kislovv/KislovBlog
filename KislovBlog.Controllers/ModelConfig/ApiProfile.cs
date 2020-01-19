@@ -8,7 +8,7 @@ namespace KislovBlog.Controllers.ModelConfig
     {
         public ApiProfile()
         {
-            CreateMap<MessageData, MessageDataDto>();
+            CreateMap<Article, ArticleDto>();
             CreateMap<MessageDataDtoRs, MessageDataRs>();
         }
     }

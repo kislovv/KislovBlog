@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KislovBlog.Contracts\KislovBlog.Contracts.csproj" />
+    <ProjectReference Include="..\KislovBlog.Domain\KislovBlog.Domain.csproj" />
   </ItemGroup>
 
 </Project>
