@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using KislovBlog.Domain.Abstraction;
 using Microsoft.AspNetCore.Hosting;
 
@@ -9,28 +10,45 @@ namespace KislovBlog.Utilities.Helpers
     public class CensureChecker : ICensureChecker
     {
         private readonly IWebHostEnvironment _environment;
-        private readonly List<string> _badWords;
+
+        private List<string> _badWords;
+        private List<string> BadWords
+        {
+            get
+            {
+                if (_badWords != null)
+                {
+                    return _badWords;
+                }
+                var path = $"{_environment.WebRootPath}\\BadWords.txt";
+                return _badWords ?? (_badWords = File
+                           .ReadAllLines(path)
+                           ?.ToList());
+            }
+        }
 
         public CensureChecker(IWebHostEnvironment environment)
         {
             _environment = environment;
-            _badWords = File.ReadAllLines(Path.Combine(environment.WebRootPath,"/BadWords.txt"))?.ToList() ?? new List<string>();
         }
 
         ///<summary>
         ///Слова на наличие мата
         /// </summary>       
-        public bool CheckWord(string word) => _badWords.Any(x => x == word.ToLower());
+        public bool CheckWord(string word)
+        {
+            return BadWords.Any(x => x == word.ToLower());
+        }
 
         /// <summary>
         /// проверка наличия мата в предложении
         /// </summary>
         /// <param name="words"></param>
         /// <returns></returns>
-        public bool CheckMessage(IEnumerable<string> words)
+        public List<string> CheckMessage(IEnumerable<string> words)
         {
-            var result = words.ToList().Intersect(_badWords);
-            return !result.Any();
+            words = words.ToList().ConvertAll(x => x.ToLower());
+            return  words.Intersect(BadWords).ToList();
         }
 
         /// <summary>

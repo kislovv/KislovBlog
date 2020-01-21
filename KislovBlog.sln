@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KislovBlog.Utilities", "Uti
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{0C8AE9D2-6E90-4102-AE09-0E45E87CA620}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KislovBlog.Repository", "KislovBlog.Repository\KislovBlog.Repository.csproj", "{CFC2170C-B782-4924-A59C-145F228377AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KislovBlog.Repository", "KislovBlog.Repository\KislovBlog.Repository.csproj", "{CFC2170C-B782-4924-A59C-145F228377AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

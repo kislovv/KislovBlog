@@ -2,13 +2,14 @@
 using KislovBlog.Domain.DbEntity;
 using KislovBlog.Domain.Models;
 
-namespace KislovBlog.Domain.MapperConfig
+namespace KislovBlog.Repository
 {
     public class DomainProfile : Profile
     {
         public DomainProfile()
         {
             CreateMap<ArticleDto, Article>();
+            CreateMap<Article, ArticleDto>();
         }
     }
 }

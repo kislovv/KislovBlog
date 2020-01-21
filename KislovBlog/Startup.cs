@@ -3,6 +3,7 @@ using KislovBlog.Controllers.ModelConfig;
 using KislovBlog.Domain.Abstraction;
 using KislovBlog.Domain.Services;
 using KislovBlog.Middlewares;
+using KislovBlog.Repository;
 using KislovBlog.Utilities.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,13 +28,20 @@ namespace KislovBlog
             services.AddSingleton(new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new ApiProfile());
+                mc.AddProfile(new DomainProfile());
             }).CreateMapper());
 
-            services.AddSingleton<ICensureChecker,CensureChecker>();
+            //DB
+            services.AddSingleton<IArticleRepository, ArticleRepository>();
+
+            //Domain
+            services.AddSingleton<ICensureChecker, CensureChecker>();
             services.AddScoped<IMessageWorker, MessageWorker>();
 
+            //Api
             services.AddControllers();
 
+            //Options
             services.Configure<AuthOption>(Configuration.GetSection("Auth"));
         }
 

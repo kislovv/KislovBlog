@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using KislovBlog.Domain.Abstraction;
+using KislovBlog.Domain.Helpers;
 using KislovBlog.Domain.Models;
 
 namespace KislovBlog.Domain.Services
@@ -9,31 +8,29 @@ namespace KislovBlog.Domain.Services
     public class MessageWorker : IMessageWorker
     {
         private readonly ICensureChecker _censureChecker;
-
-        public MessageWorker(ICensureChecker censureChecker)
+        private readonly IArticleRepository _articleRepository;
+        public MessageWorker(ICensureChecker censureChecker, IArticleRepository articleRepository)
         {
             _censureChecker = censureChecker;
+            _articleRepository = articleRepository;
         }
 
-        public Task<MessageDataDtoRs> AnalysMessage(string message)
+        public Task<string> AnalysMessage(string message)
         {
-            if (!_censureChecker.CheckMessage(message.Split(' ')))
+            var badWords = _censureChecker.CheckMessage(message.Split());
+            foreach (var word in badWords)
             {
-                return Task.FromResult(new MessageDataDtoRs{CurrectMessage = message});
+                message = message.Replace(word, _censureChecker.CensureWord(word));
             }
+            return Task.FromResult(message);
+        }
 
-            var words = message.Split(' ');
-            for (var index = 0; index < words.Length; index++)
-            {
-                var word = words[index];
-                if (_censureChecker.CheckWord(word))
-                {
-                    words[index] = _censureChecker.CensureWord(word);
-                }
-            }
-
-            var result = string.Join(" ", words);
-            return Task.FromResult(new MessageDataDtoRs { CurrectMessage = result });
+        public async Task<Result> AddNewArticle(ArticleDto articleDto)
+        {
+            var result = await AnalysMessage(articleDto.Text);
+            articleDto.Text = result;
+            _articleRepository.AddArticle(articleDto);
+            return Result.Complete();
         }
     }
 }
