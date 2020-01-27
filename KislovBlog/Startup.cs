@@ -42,6 +42,7 @@ namespace KislovBlog
             services.AddControllers();
 
             //Options
+            services.Configure<AppOptions>(Configuration.GetSection("App"));
             services.Configure<AuthOption>(Configuration.GetSection("Auth"));
         }
 
