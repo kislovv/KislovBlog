@@ -10,6 +10,5 @@ namespace KislovBlog.Domain.DbEntity
         public string Text { get; set; }
         public long ArticleId { get; set; }
         public long UserId { get; set; }
-        public long Likes { get; set; }
     }
 }
