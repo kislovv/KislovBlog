@@ -1,28 +1,37 @@
-﻿using KislovBlog.Contracts;
+﻿using AutoMapper;
+using KislovBlog.Contracts;
 using KislovBlog.Domain.Abstraction;
+using KislovBlog.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using static System.Int32;
 
 namespace KislovBlog.Controllers.Controllers
 {
     [Authorize]
     [Route("user")]
     public class UserController : ControllerBase
-    {
+    { 
         private readonly IUserService _userService;
-
-        public UserController(IUserService userService)
+        private readonly IMapper _mapper;
+        public UserController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
+            _mapper = mapper;
         }
 
+        [AllowAnonymous]
+        [HttpPost("new")]
+        public IActionResult Add([FromBody] User user)
+        {
+            _userService.AddUser(_mapper.Map<UserDto>(user));
+            return Ok();
+        }
 
         [AllowAnonymous]
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody]UserLoginRq model)
         {
-            var user = _userService.Authenticate(model?.Login, model?.Password);
+            var user = _userService.Authenticate(model.Login, model.Password);
 
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
@@ -41,9 +50,7 @@ namespace KislovBlog.Controllers.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            // only allow admins to access other user records
-            var currentUserId = int.Parse(User.Identity.Name);
-            if (id != currentUserId && !User.IsInRole(Role.Admin))
+            if (id.ToString() != User.Identity.Name && !User.IsInRole(Role.Admin))
                 return Forbid();
 
             var user = _userService.GetById(id);

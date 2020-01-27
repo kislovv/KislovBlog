@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using KislovBlog.Domain.DbEntity;
+﻿using System.Collections.Generic;
 using KislovBlog.Domain.Models;
 
 namespace KislovBlog.Domain.Abstraction
@@ -11,5 +8,7 @@ namespace KislovBlog.Domain.Abstraction
         UserDto Authenticate(string username, string password);
         IEnumerable<UserDto> GetAll();
         UserDto GetById(int id);
+
+        void AddUser(UserDto user);
     }
 }

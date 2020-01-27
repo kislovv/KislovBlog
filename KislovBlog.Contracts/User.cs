@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using KislovBlog.Contracts.Enums;
 
 namespace KislovBlog.Contracts
@@ -12,8 +10,6 @@ namespace KislovBlog.Contracts
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public Rank Rank { get; set; }
-        public bool IsBanned { get; set; }
-        public string Role { get; set; }
     }
 
 

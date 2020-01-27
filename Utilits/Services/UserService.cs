@@ -55,5 +55,10 @@ namespace KislovBlog.Utilities.Services
             var user = _userRepository.GetUserById(id);
             return user.WithoutPassword();
         }
+
+        public void AddUser(UserDto user)
+        {
+            _userRepository.AddUser(user);
+        }
     }
 }
